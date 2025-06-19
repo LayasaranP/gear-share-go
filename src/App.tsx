@@ -10,6 +10,7 @@ import SignUp from "./pages/SignUp";
 import BrowseEquipment from "./pages/BrowseEquipment";
 import ListEquipment from "./pages/ListEquipment";
 import Help from "./pages/Help";
+import HowItWorksPage from "./pages/HowItWorksPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
