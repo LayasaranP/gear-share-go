@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Search, User, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -10,35 +11,37 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <div className="text-2xl font-bold text-blue-600">
+            <Link to="/" className="text-2xl font-bold text-blue-600">
               EquipShare
-            </div>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">
+            <Link to="/browse" className="text-gray-700 hover:text-blue-600 transition-colors">
               Browse Equipment
-            </a>
-            <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">
+            </Link>
+            <Link to="/how-it-works" className="text-gray-700 hover:text-blue-600 transition-colors">
               How It Works
-            </a>
-            <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">
+            </Link>
+            <Link to="/list-equipment" className="text-gray-700 hover:text-blue-600 transition-colors">
               List Your Equipment
-            </a>
-            <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">
+            </Link>
+            <Link to="/help" className="text-gray-700 hover:text-blue-600 transition-colors">
               Help
-            </a>
+            </Link>
           </nav>
 
           {/* User Actions */}
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" className="hidden md:flex">
-              List Your Equipment
+            <Button variant="ghost" className="hidden md:flex" asChild>
+              <Link to="/list-equipment">List Your Equipment</Link>
             </Button>
-            <Button variant="outline" className="flex items-center space-x-2">
-              <User className="w-4 h-4" />
-              <span className="hidden sm:inline">Sign In</span>
+            <Button variant="outline" className="flex items-center space-x-2" asChild>
+              <Link to="/signin">
+                <User className="w-4 h-4" />
+                <span className="hidden sm:inline">Sign In</span>
+              </Link>
             </Button>
             <Button className="md:hidden" variant="ghost" size="sm">
               <Menu className="w-5 h-5" />
