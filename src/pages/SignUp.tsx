@@ -48,7 +48,8 @@ const SignUp = () => {
         description: "Welcome to EquipShare. You can now start listing or browsing equipment.",
       });
 
-      navigate('/browse');
+      // New users go to user dashboard
+      navigate('/user-dashboard');
     } catch (error) {
       toast({
         title: "Sign up failed",

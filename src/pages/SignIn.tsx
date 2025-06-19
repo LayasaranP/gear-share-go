@@ -29,7 +29,13 @@ const SignIn = () => {
           title: "Sign in successful!",
           description: "Welcome back to EquipShare",
         });
-        navigate('/browse');
+        
+        // Check if admin user (simple check for demo)
+        if (email.includes('admin')) {
+          navigate('/admin-dashboard');
+        } else {
+          navigate('/user-dashboard');
+        }
       } else {
         throw new Error('Invalid credentials');
       }
@@ -64,7 +70,7 @@ const SignIn = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 className="mt-1"
-                placeholder="Enter your email"
+                placeholder="Enter your email (use 'admin' for admin dashboard)"
               />
             </div>
             
@@ -98,6 +104,12 @@ const SignIn = () => {
               <Link to="/signup" className="text-blue-600 hover:underline font-medium">
                 Sign up here
               </Link>
+            </p>
+          </div>
+          
+          <div className="mt-4 p-4 bg-blue-50 rounded-lg">
+            <p className="text-sm text-blue-800">
+              <strong>Demo:</strong> Use any email with "admin" to access admin dashboard, or any other email for user dashboard.
             </p>
           </div>
         </Card>
