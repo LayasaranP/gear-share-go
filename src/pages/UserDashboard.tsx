@@ -73,8 +73,8 @@ const UserDashboard = () => {
               <Package className="w-12 h-12 text-green-600 mx-auto mb-4" />
               <h3 className="text-lg font-semibold mb-2">My Listings</h3>
               <p className="text-gray-600 mb-4">Manage your equipment listings</p>
-              <Button variant="outline" className="w-full">
-                View Listings
+              <Button asChild variant="outline" className="w-full">
+                <Link to="/my-listings">View Listings</Link>
               </Button>
             </div>
           </Card>
@@ -83,8 +83,8 @@ const UserDashboard = () => {
               <MessageCircle className="w-12 h-12 text-orange-600 mx-auto mb-4" />
               <h3 className="text-lg font-semibold mb-2">Messages</h3>
               <p className="text-gray-600 mb-4">Check your rental inquiries</p>
-              <Button variant="outline" className="w-full">
-                View Messages
+              <Button asChild variant="outline" className="w-full">
+                <Link to="/messages">View Messages</Link>
               </Button>
             </div>
           </Card>

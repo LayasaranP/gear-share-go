@@ -1,5 +1,5 @@
-
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Users, Package, DollarSign, AlertTriangle, TrendingUp, Shield } from 'lucide-react';
@@ -66,7 +66,9 @@ const AdminDashboard = () => {
               <Users className="w-12 h-12 text-blue-600 mx-auto mb-4" />
               <h3 className="text-lg font-semibold mb-2">User Management</h3>
               <p className="text-gray-600 mb-4">Manage user accounts and permissions</p>
-              <Button className="w-full">Manage Users</Button>
+              <Button asChild className="w-full">
+                <Link to="/admin/user-management">Manage Users</Link>
+              </Button>
             </div>
           </Card>
           <Card className="p-6">
@@ -74,7 +76,9 @@ const AdminDashboard = () => {
               <Package className="w-12 h-12 text-green-600 mx-auto mb-4" />
               <h3 className="text-lg font-semibold mb-2">Equipment Oversight</h3>
               <p className="text-gray-600 mb-4">Review and moderate equipment listings</p>
-              <Button className="w-full">Review Listings</Button>
+              <Button asChild className="w-full">
+                <Link to="/admin/equipment-oversight">Review Listings</Link>
+              </Button>
             </div>
           </Card>
           <Card className="p-6">
@@ -82,7 +86,9 @@ const AdminDashboard = () => {
               <AlertTriangle className="w-12 h-12 text-red-600 mx-auto mb-4" />
               <h3 className="text-lg font-semibold mb-2">Reports & Issues</h3>
               <p className="text-gray-600 mb-4">Handle user reports and disputes</p>
-              <Button className="w-full">View Reports</Button>
+              <Button asChild className="w-full">
+                <Link to="/admin/reports-issues">View Reports</Link>
+              </Button>
             </div>
           </Card>
           <Card className="p-6">

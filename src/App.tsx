@@ -14,6 +14,11 @@ import HowItWorksPage from "./pages/HowItWorksPage";
 import UserDashboard from "./pages/UserDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
+import MyListings from "./pages/user/MyListings";
+import Messages from "./pages/user/Messages";
+import UserManagement from "./pages/admin/UserManagement";
+import EquipmentOversight from "./pages/admin/EquipmentOversight";
+import ReportsIssues from "./pages/admin/ReportsIssues";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +38,11 @@ const App = () => (
           <Route path="/how-it-works" element={<HowItWorksPage />} />
           <Route path="/user-dashboard" element={<UserDashboard />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route path="/my-listings" element={<MyListings />} />
+          <Route path="/messages" element={<Messages />} />
+          <Route path="/admin/user-management" element={<UserManagement />} />
+          <Route path="/admin/equipment-oversight" element={<EquipmentOversight />} />
+          <Route path="/admin/reports-issues" element={<ReportsIssues />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
