@@ -1,12 +1,13 @@
 
 import React from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
+import { useToast } from '@/hooks/use-toast';
 import Header from '@/components/Header';
 
 const SignUp = () => {
@@ -18,19 +19,45 @@ const SignUp = () => {
     confirmPassword: '',
     agreeToTerms: false
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const { toast } = useToast();
 
   const handleChange = (field: string, value: string | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match');
-      return;
+    setIsLoading(true);
+
+    try {
+      if (formData.password !== formData.confirmPassword) {
+        throw new Error('Passwords do not match');
+      }
+
+      if (!formData.agreeToTerms) {
+        throw new Error('Please agree to the terms and conditions');
+      }
+
+      // Simulate account creation
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      toast({
+        title: "Account created successfully!",
+        description: "Welcome to EquipShare. You can now start listing or browsing equipment.",
+      });
+
+      navigate('/browse');
+    } catch (error) {
+      toast({
+        title: "Sign up failed",
+        description: error instanceof Error ? error.message : "An error occurred",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
     }
-    console.log('Sign up attempt:', formData);
-    // TODO: Implement actual registration
   };
 
   return (
@@ -128,8 +155,8 @@ const SignUp = () => {
               </Label>
             </div>
             
-            <Button type="submit" className="w-full" disabled={!formData.agreeToTerms}>
-              Create Account
+            <Button type="submit" className="w-full" disabled={!formData.agreeToTerms || isLoading}>
+              {isLoading ? 'Creating Account...' : 'Create Account'}
             </Button>
           </form>
           

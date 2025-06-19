@@ -1,21 +1,47 @@
 
 import React from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card } from '@/components/ui/card';
+import { useToast } from '@/hooks/use-toast';
 import Header from '@/components/Header';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Sign in attempt:', { email, password });
-    // TODO: Implement actual authentication
+    setIsLoading(true);
+    
+    // Simulate authentication
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      if (email && password) {
+        toast({
+          title: "Sign in successful!",
+          description: "Welcome back to EquipShare",
+        });
+        navigate('/browse');
+      } else {
+        throw new Error('Invalid credentials');
+      }
+    } catch (error) {
+      toast({
+        title: "Sign in failed",
+        description: "Please check your email and password",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -61,8 +87,8 @@ const SignIn = () => {
               </Link>
             </div>
             
-            <Button type="submit" className="w-full">
-              Sign In
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? 'Signing in...' : 'Sign In'}
             </Button>
           </form>
           

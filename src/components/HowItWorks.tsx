@@ -1,6 +1,8 @@
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Search, Calendar, Check } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const steps = [
   {
@@ -21,6 +23,16 @@ const steps = [
 ];
 
 const HowItWorks = () => {
+  const navigate = useNavigate();
+
+  const handleFindEquipment = () => {
+    navigate('/browse');
+  };
+
+  const handleListEquipment = () => {
+    navigate('/list-equipment');
+  };
+
   return (
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -71,12 +83,19 @@ const HowItWorks = () => {
               Join thousands of users who are saving money and building stronger communities through equipment sharing.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+              <Button 
+                onClick={handleFindEquipment}
+                className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+              >
                 Find Equipment
-              </button>
-              <button className="border border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+              </Button>
+              <Button 
+                onClick={handleListEquipment}
+                variant="outline"
+                className="border border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
+              >
                 List Your Equipment
-              </button>
+              </Button>
             </div>
           </div>
         </div>
