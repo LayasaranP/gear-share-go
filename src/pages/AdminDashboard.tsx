@@ -1,8 +1,9 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Users, Package, DollarSign, AlertTriangle, TrendingUp, Shield } from 'lucide-react';
+import { Users, Package, DollarSign, AlertTriangle, TrendingUp, Shield, FileText, BarChart3 } from 'lucide-react';
 import Header from '@/components/Header';
 
 const AdminDashboard = () => {
@@ -93,10 +94,12 @@ const AdminDashboard = () => {
           </Card>
           <Card className="p-6">
             <div className="text-center">
-              <TrendingUp className="w-12 h-12 text-purple-600 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Analytics</h3>
+              <BarChart3 className="w-12 h-12 text-purple-600 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold mb-2">System Analytics</h3>
               <p className="text-gray-600 mb-4">View platform performance metrics</p>
-              <Button className="w-full">View Analytics</Button>
+              <Button asChild className="w-full">
+                <Link to="/admin/system-analytics">View Analytics</Link>
+              </Button>
             </div>
           </Card>
           <Card className="p-6">
@@ -115,6 +118,33 @@ const AdminDashboard = () => {
               <Button className="w-full">Security Panel</Button>
             </div>
           </Card>
+        </div>
+
+        {/* System Management */}
+        <div className="mb-8">
+          <h2 className="text-xl font-semibold mb-4">System Management</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card className="p-6">
+              <div className="text-center">
+                <TrendingUp className="w-12 h-12 text-green-600 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold mb-2">Advanced Analytics</h3>
+                <p className="text-gray-600 mb-4">Deep dive into platform metrics and insights</p>
+                <Button asChild className="w-full">
+                  <Link to="/admin/system-analytics">View Analytics</Link>
+                </Button>
+              </div>
+            </Card>
+            <Card className="p-6">
+              <div className="text-center">
+                <FileText className="w-12 h-12 text-gray-600 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold mb-2">Admin Logs</h3>
+                <p className="text-gray-600 mb-4">Track all administrative actions and changes</p>
+                <Button asChild className="w-full">
+                  <Link to="/admin/logs">View Logs</Link>
+                </Button>
+              </div>
+            </Card>
+          </div>
         </div>
 
         {/* Recent Admin Activity */}

@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { User, Package, MessageCircle, Settings, PlusCircle, Eye } from 'lucide-react';
+import { User, Package, MessageCircle, Settings, PlusCircle, Eye, Wallet, CreditCard, Calendar, Bell, Shield } from 'lucide-react';
 import Header from '@/components/Header';
 
 const UserDashboard = () => {
@@ -88,6 +88,73 @@ const UserDashboard = () => {
               </Button>
             </div>
           </Card>
+          <Card className="p-6">
+            <div className="text-center">
+              <Wallet className="w-12 h-12 text-purple-600 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold mb-2">Wallet & Payouts</h3>
+              <p className="text-gray-600 mb-4">Manage your earnings and payments</p>
+              <Button asChild variant="outline" className="w-full">
+                <Link to="/wallet">View Wallet</Link>
+              </Button>
+            </div>
+          </Card>
+          <Card className="p-6">
+            <div className="text-center">
+              <CreditCard className="w-12 h-12 text-indigo-600 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold mb-2">Transactions</h3>
+              <p className="text-gray-600 mb-4">View your payment history</p>
+              <Button asChild variant="outline" className="w-full">
+                <Link to="/transactions">View Transactions</Link>
+              </Button>
+            </div>
+          </Card>
+          <Card className="p-6">
+            <div className="text-center">
+              <Calendar className="w-12 h-12 text-red-600 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold mb-2">Calendar</h3>
+              <p className="text-gray-600 mb-4">Manage your rental schedule</p>
+              <Button asChild variant="outline" className="w-full">
+                <Link to="/calendar">View Calendar</Link>
+              </Button>
+            </div>
+          </Card>
+        </div>
+
+        {/* Account Management */}
+        <div className="mb-8">
+          <h2 className="text-xl font-semibold mb-4">Account Management</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card className="p-6">
+              <div className="text-center">
+                <Settings className="w-12 h-12 text-gray-600 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold mb-2">Account Settings</h3>
+                <p className="text-gray-600 mb-4">Manage your profile and preferences</p>
+                <Button asChild variant="outline" className="w-full">
+                  <Link to="/account/settings">Account Settings</Link>
+                </Button>
+              </div>
+            </Card>
+            <Card className="p-6">
+              <div className="text-center">
+                <Shield className="w-12 h-12 text-green-600 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold mb-2">KYC Verification</h3>
+                <p className="text-gray-600 mb-4">Complete your identity verification</p>
+                <Button asChild variant="outline" className="w-full">
+                  <Link to="/account/kyc-verification">Verify Identity</Link>
+                </Button>
+              </div>
+            </Card>
+            <Card className="p-6">
+              <div className="text-center">
+                <Bell className="w-12 h-12 text-yellow-600 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold mb-2">Notifications</h3>
+                <p className="text-gray-600 mb-4">Manage your notification settings</p>
+                <Button asChild variant="outline" className="w-full">
+                  <Link to="/notifications">View Notifications</Link>
+                </Button>
+              </div>
+            </Card>
+          </div>
         </div>
 
         {/* Recent Activity */}
