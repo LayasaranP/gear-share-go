@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Wallet, CreditCard, DollarSign, TrendingUp, Download } from 'lucide-react';
+import { ArrowLeft, Wallet as WalletIcon, CreditCard, DollarSign, TrendingUp, Download } from 'lucide-react';
 import Header from '@/components/Header';
 
 const Wallet = () => {
@@ -54,7 +54,7 @@ const Wallet = () => {
                 <p className="text-sm font-medium text-gray-600">Pending Payouts</p>
                 <p className="text-2xl font-bold text-orange-600">${payoutInfo.pendingPayouts}</p>
               </div>
-              <Wallet className="w-8 h-8 text-orange-600" />
+              <WalletIcon className="w-8 h-8 text-orange-600" />
             </div>
           </Card>
           <Card className="p-6">
