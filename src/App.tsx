@@ -28,6 +28,8 @@ import EquipmentOversight from "./pages/admin/EquipmentOversight";
 import ReportsIssues from "./pages/admin/ReportsIssues";
 import SystemAnalytics from "./pages/admin/SystemAnalytics";
 import Logs from "./pages/admin/Logs";
+import FinancialOverview from "./pages/admin/FinancialOverview";
+import SecuritySettings from "./pages/admin/SecuritySettings";
 
 const queryClient = new QueryClient();
 
@@ -61,6 +63,8 @@ const App = () => (
           <Route path="/admin/reports-issues" element={<ReportsIssues />} />
           <Route path="/admin/system-analytics" element={<SystemAnalytics />} />
           <Route path="/admin/logs" element={<Logs />} />
+          <Route path="/admin/financial-overview" element={<FinancialOverview />} />
+          <Route path="/admin/security-settings" element={<SecuritySettings />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
@@ -289,7 +288,9 @@ const AdminDashboard = () => {
               </div>
               <h3 className="text-lg font-semibold mb-2 text-gray-900">Financial Overview</h3>
               <p className="text-gray-600 mb-4">Monitor payments and transactions</p>
-              <Button className="w-full">View Finances</Button>
+              <Button asChild className="w-full">
+                <Link to="/admin/financial-overview">View Finances</Link>
+              </Button>
             </div>
           </Card>
           <Card className="p-6 bg-white border-gray-200 hover:shadow-md transition-shadow">
@@ -299,7 +300,9 @@ const AdminDashboard = () => {
               </div>
               <h3 className="text-lg font-semibold mb-2 text-gray-900">Security Settings</h3>
               <p className="text-gray-600 mb-4">Manage platform security and policies</p>
-              <Button className="w-full">Security Panel</Button>
+              <Button asChild className="w-full">
+                <Link to="/admin/security-settings">Security Panel</Link>
+              </Button>
             </div>
           </Card>
         </div>
