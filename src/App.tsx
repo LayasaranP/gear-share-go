@@ -12,6 +12,7 @@ import ListEquipment from "./pages/ListEquipment";
 import Help from "./pages/Help";
 import HowItWorksPage from "./pages/HowItWorksPage";
 import UserDashboard from "./pages/UserDashboard";
+import RenterDashboard from "./pages/RenterDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 import MyListings from "./pages/user/MyListings";
@@ -45,6 +46,7 @@ const App = () => (
           <Route path="/help" element={<Help />} />
           <Route path="/how-it-works" element={<HowItWorksPage />} />
           <Route path="/user-dashboard" element={<UserDashboard />} />
+          <Route path="/renter-dashboard" element={<RenterDashboard />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/my-listings" element={<MyListings />} />
           <Route path="/messages" element={<Messages />} />
