@@ -66,12 +66,19 @@ const EquipmentDetail: React.FC<EquipmentDetailProps> = ({ equipment, onBack, on
   const handleDateSelect = (date: Date | undefined) => {
     if (!date) return;
 
+    // If no start date or both dates are selected, set as start date
     if (!selectedDates.start || (selectedDates.start && selectedDates.end)) {
       setSelectedDates({ start: date, end: undefined });
-    } else if (date < selectedDates.start) {
-      setSelectedDates({ start: date, end: selectedDates.start });
-    } else {
-      setSelectedDates({ start: selectedDates.start, end: date });
+    } 
+    // If start date exists but no end date
+    else if (selectedDates.start && !selectedDates.end) {
+      if (date < selectedDates.start) {
+        // If selected date is before start, make it the new start
+        setSelectedDates({ start: date, end: selectedDates.start });
+      } else {
+        // If selected date is after start, make it the end
+        setSelectedDates({ start: selectedDates.start, end: date });
+      }
     }
   };
 
@@ -80,12 +87,28 @@ const EquipmentDetail: React.FC<EquipmentDetailProps> = ({ equipment, onBack, on
     return equipment.availability.unavailableDates.includes(dateString) || date < new Date();
   };
 
+  const isDateInRange = (date: Date) => {
+    if (!selectedDates.start || !selectedDates.end) return false;
+    return date >= selectedDates.start && date <= selectedDates.end;
+  };
+
+  const isDateSelected = (date: Date) => {
+    return (selectedDates.start && date.toDateString() === selectedDates.start.toDateString()) ||
+           (selectedDates.end && date.toDateString() === selectedDates.end.toDateString());
+  };
+
   const handleBookingRequest = () => {
     if (selectedDates.start && selectedDates.end) {
+      console.log('Booking request initiated with dates:', {
+        start: selectedDates.start.toISOString().split('T')[0],
+        end: selectedDates.end.toISOString().split('T')[0]
+      });
       onBookingRequest(equipment, {
         start: selectedDates.start.toISOString().split('T')[0],
         end: selectedDates.end.toISOString().split('T')[0]
       });
+    } else {
+      console.log('Booking request failed - missing dates:', selectedDates);
     }
   };
 
@@ -93,6 +116,11 @@ const EquipmentDetail: React.FC<EquipmentDetailProps> = ({ equipment, onBack, on
     if (!selectedDates.start || !selectedDates.end) return 0;
     const days = Math.ceil((selectedDates.end.getTime() - selectedDates.start.getTime()) / (1000 * 60 * 60 * 24));
     return days * equipment.price;
+  };
+
+  const getDaysCount = () => {
+    if (!selectedDates.start || !selectedDates.end) return 0;
+    return Math.ceil((selectedDates.end.getTime() - selectedDates.start.getTime()) / (1000 * 60 * 60 * 24));
   };
 
   return (
@@ -337,12 +365,25 @@ const EquipmentDetail: React.FC<EquipmentDetailProps> = ({ equipment, onBack, on
               {/* Date Selection */}
               <div className="mb-6">
                 <h4 className="font-medium mb-3">Select Dates</h4>
+                <div className="text-sm text-gray-600 mb-2">
+                  {selectedDates.start && !selectedDates.end && "Select end date"}
+                  {!selectedDates.start && "Select start date"}
+                  {selectedDates.start && selectedDates.end && `${getDaysCount()} day${getDaysCount() > 1 ? 's' : ''} selected`}
+                </div>
                 <Calendar
                   mode="single"
                   selected={selectedDates.start}
                   onSelect={handleDateSelect}
                   disabled={isDateUnavailable}
-                  className="rounded-md border"
+                  className="rounded-md border w-full"
+                  modifiers={{
+                    selected: (date) => isDateSelected(date),
+                    range: (date) => isDateInRange(date)
+                  }}
+                  modifiersStyles={{
+                    selected: { backgroundColor: '#0d9488', color: 'white' },
+                    range: { backgroundColor: '#f0fdfa', color: '#0d9488' }
+                  }}
                 />
                 {selectedDates.start && selectedDates.end && (
                   <div className="mt-3 p-3 bg-teal-50 rounded-lg">
@@ -350,7 +391,7 @@ const EquipmentDetail: React.FC<EquipmentDetailProps> = ({ equipment, onBack, on
                       {selectedDates.start.toLocaleDateString()} - {selectedDates.end.toLocaleDateString()}
                     </p>
                     <p className="text-sm text-teal-600">
-                      {Math.ceil((selectedDates.end.getTime() - selectedDates.start.getTime()) / (1000 * 60 * 60 * 24))} days
+                      {getDaysCount()} day{getDaysCount() > 1 ? 's' : ''}
                     </p>
                   </div>
                 )}
@@ -360,7 +401,7 @@ const EquipmentDetail: React.FC<EquipmentDetailProps> = ({ equipment, onBack, on
               {selectedDates.start && selectedDates.end && (
                 <div className="mb-6 space-y-2">
                   <div className="flex justify-between text-sm">
-                    <span>Rental Cost</span>
+                    <span>Rental Cost ({getDaysCount()} day{getDaysCount() > 1 ? 's' : ''})</span>
                     <span>${calculateTotalCost()}</span>
                   </div>
                   <div className="flex justify-between text-sm">
