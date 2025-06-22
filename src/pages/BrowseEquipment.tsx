@@ -181,6 +181,19 @@ const BrowseEquipment = () => {
             </Card>
           ))}
         </div>
+
+        {filteredEquipment.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-gray-500 text-lg">No equipment found matching your search.</p>
+            <Button 
+              variant="outline" 
+              className="mt-4"
+              onClick={() => setSearchTerm('')}
+            >
+              Clear Search
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
