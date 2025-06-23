@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -17,6 +16,7 @@ import RenterDashboard from "./pages/RenterDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 import MyListings from "./pages/user/MyListings";
+import MyBookings from "./pages/user/MyBookings";
 import Messages from "./pages/user/Messages";
 import Wallet from "./pages/user/Wallet";
 import Transactions from "./pages/user/Transactions";
@@ -54,6 +54,7 @@ const App = () => (
           <Route path="/renter-dashboard" element={<RenterDashboard />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/my-listings" element={<MyListings />} />
+          <Route path="/my-bookings" element={<MyBookings />} />
           <Route path="/messages" element={<Messages />} />
           <Route path="/wallet" element={<Wallet />} />
           <Route path="/transactions" element={<Transactions />} />
