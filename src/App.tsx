@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import BrowseEquipment from "./pages/BrowseEquipment";
+import CategoryBrowse from "./pages/CategoryBrowse";
 import ListEquipment from "./pages/ListEquipment";
 import Help from "./pages/Help";
 import HowItWorksPage from "./pages/HowItWorksPage";
@@ -44,6 +45,7 @@ const App = () => (
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/browse" element={<BrowseEquipment />} />
+          <Route path="/category/:category" element={<CategoryBrowse />} />
           <Route path="/map" element={<BrowseEquipment />} />
           <Route path="/list-equipment" element={<ListEquipment />} />
           <Route path="/help" element={<Help />} />

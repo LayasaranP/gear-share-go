@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 
 const categories = [
@@ -7,37 +8,43 @@ const categories = [
     name: 'Construction Tools',
     image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=300&fit=crop',
     itemCount: '2,400+ items',
-    description: 'Drills, saws, excavators, and more'
+    description: 'Drills, saws, excavators, and more',
+    path: 'construction-tools'
   },
   {
     name: 'Farming Equipment',
     image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&h=300&fit=crop',
     itemCount: '1,800+ items',
-    description: 'Tractors, tillers, harvesting tools'
+    description: 'Tractors, tillers, harvesting tools',
+    path: 'farming-equipment'
   },
   {
     name: 'Automotive Tools',
     image: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400&h=300&fit=crop',
     itemCount: '3,200+ items',
-    description: 'Lifts, diagnostic tools, specialty wrenches'
+    description: 'Lifts, diagnostic tools, specialty wrenches',
+    path: 'automotive-tools'
   },
   {
     name: 'Landscaping',
     image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=300&fit=crop',
     itemCount: '1,500+ items',
-    description: 'Mowers, trimmers, leaf blowers'
+    description: 'Mowers, trimmers, leaf blowers',
+    path: 'landscaping'
   },
   {
     name: 'Power Tools',
     image: 'https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=400&h=300&fit=crop',
     itemCount: '4,100+ items',
-    description: 'Grinders, sanders, welders'
+    description: 'Grinders, sanders, welders',
+    path: 'power-tools'
   },
   {
     name: 'Heavy Machinery',
     image: 'https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=400&h=300&fit=crop',
     itemCount: '900+ items',
-    description: 'Forklifts, bulldozers, cranes'
+    description: 'Forklifts, bulldozers, cranes',
+    path: 'heavy-machinery'
   }
 ];
 
@@ -56,29 +63,31 @@ const EquipmentCategories = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {categories.map((category, index) => (
-            <Card key={index} className="group cursor-pointer hover:shadow-lg transition-shadow duration-300">
-              <CardContent className="p-0">
-                <div className="relative overflow-hidden rounded-t-lg">
-                  <img
-                    src={category.image}
-                    alt={category.name}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-20 transition-opacity duration-300" />
-                  <div className="absolute top-4 right-4 bg-white bg-opacity-90 px-2 py-1 rounded-full text-sm font-medium">
-                    {category.itemCount}
+            <Link key={index} to={`/category/${category.path}`}>
+              <Card className="group cursor-pointer hover:shadow-lg transition-shadow duration-300">
+                <CardContent className="p-0">
+                  <div className="relative overflow-hidden rounded-t-lg">
+                    <img
+                      src={category.image}
+                      alt={category.name}
+                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-20 transition-opacity duration-300" />
+                    <div className="absolute top-4 right-4 bg-white bg-opacity-90 px-2 py-1 rounded-full text-sm font-medium">
+                      {category.itemCount}
+                    </div>
                   </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    {category.name}
-                  </h3>
-                  <p className="text-gray-600">
-                    {category.description}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      {category.name}
+                    </h3>
+                    <p className="text-gray-600">
+                      {category.description}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
       </div>
